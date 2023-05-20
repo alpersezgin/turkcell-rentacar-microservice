@@ -1,4 +1,4 @@
-package com.kodlamaio.commonpackage.configuration.kafka;
+package com.kodlamaio.commonpackage.configuration.kafka.producer;
 
 import com.kodlamaio.commonpackage.kafka.producer.KafkaProducer;
 import org.springframework.context.annotation.Bean;

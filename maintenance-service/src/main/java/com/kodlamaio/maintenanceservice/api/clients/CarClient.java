@@ -1,4 +1,5 @@
-package com.kodlamaio.rentalservice.api.clients;
+package com.kodlamaio.maintenanceservice.api.clients;
+
 
 import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
 import io.github.resilience4j.retry.annotation.Retry;
@@ -12,8 +13,5 @@ import java.util.UUID;
 public interface CarClient {
     @GetMapping(value = "/api/cars/check-car-available/{carId}")
     @Retry(name = "notAvailableService")
-        //@Retryable(retryFor = {CarClientFallback.class}, maxAttempts = 5, backoff = @Backoff(delay = 15000))
-        //@CircuitBreaker(name = "notAvailableService"/*, fallbackMethod = "checkIfCarAvailable"*/)
     ClientResponse checkIfCarAvailable(@PathVariable UUID carId);
-
 }
