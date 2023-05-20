@@ -18,13 +18,18 @@ spring:
     hibernate:
       ddl-auto: update
 
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+
 
 resilience4j:
   retry:
     instances:
       notAvailableService:
         max-attempts: 5
-        wait-duration: 2s
+        wait-duration: 15s
   #        retry-exceptions:
   #          - org.springframework.web.client.HttpServerErrorException
   #          - java.util.concurrent.TimeoutException

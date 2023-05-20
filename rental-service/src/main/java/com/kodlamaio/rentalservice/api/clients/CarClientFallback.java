@@ -15,9 +15,4 @@ public class CarClientFallback implements CarClient {
         log.info("CarClientFallback.fallbackMethod run! ");
         throw new BusinessException("INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
     }
-
-    /*public ClientResponse checkIfCarAvailableFallbackMethod(UUID carId, Exception ex) {
-        log.info("CarClientFallback.fallbackMethod run! " + ex.getMessage());
-        throw new BusinessException("INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
-    }*/
 }

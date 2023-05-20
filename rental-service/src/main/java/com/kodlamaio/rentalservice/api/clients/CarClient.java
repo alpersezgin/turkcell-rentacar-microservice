@@ -10,15 +10,10 @@ import java.util.UUID;
 
 @FeignClient(name = "inventory-service", fallback = CarClientFallback.class)
 public interface CarClient {
-
     @GetMapping(value = "/api/cars/check-car-available/{carId}")
-    //@CircuitBreaker(name = "notAvailableService"/*, fallbackMethod = "checkIfCarAvailable"*/)
     @Retry(name = "notAvailableService"/*, fallbackMethod = "checkIfCarAvailable"*/)
         //@Retryable(retryFor = {CarClientFallback.class}, maxAttempts = 5, backoff = @Backoff(delay = 15000))
+        //@CircuitBreaker(name = "notAvailableService"/*, fallbackMethod = "checkIfCarAvailable"*/)
     ClientResponse checkIfCarAvailable(@PathVariable UUID carId);
 
-    /*default ClientResponse checkIfCarAvailableFallbackMethod(UUID carId, Exception ex) {
-        System.out.println("CarClient.fallbackMethod run!");
-        throw new BusinessException("INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
-    }*/
 }
