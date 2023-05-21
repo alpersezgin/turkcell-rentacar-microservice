@@ -18,8 +18,6 @@ public class UpdateRentalRequest {
     @NotNull
     private UUID carId;
     @Min(1)
-    private double dailyPrice;
-    @Min(1)
     private int rentedForDays;
     @NotNull
     private LocalDate rentedAt;

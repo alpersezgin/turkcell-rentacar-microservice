@@ -21,7 +21,7 @@ public class RentalConsumer {
         var filter = service.getByCarIad(event.getCarId());
         filter.setState("Rented");
         service.add(filter);
-        log.info("Car created event consumed{}", event);
+        log.info("Rental created event consumed{}", event);
     }
 
 

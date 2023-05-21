@@ -26,4 +26,6 @@ public interface CarService {
     ClientResponse checkIfCarAvailable(UUID id);
 
     void changeStateByCarId(State state, UUID id);
+
+    double getDailyPrice(UUID id);
 }

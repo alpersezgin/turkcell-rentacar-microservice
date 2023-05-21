@@ -6,6 +6,11 @@ import com.kodlamaio.commonpackage.events.rental.RentalCreatedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalDeletedEvent;
 import com.kodlamaio.commonpackage.events.rental.RentalUpdatedEvent;
 import com.kodlamaio.commonpackage.kafka.producer.KafkaProducer;
+import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.ProcessPaymentRequest;
+import com.kodlamaio.commonpackage.utils.exceptions.BusinessException;
+import com.kodlamaio.rentalservice.api.clients.inventory.CarClient;
+import com.kodlamaio.rentalservice.api.clients.payment.PaymentClient;
 import com.kodlamaio.rentalservice.business.abstracts.RentalService;
 import com.kodlamaio.rentalservice.business.dto.requests.create.CreateRentalRequest;
 import com.kodlamaio.rentalservice.business.dto.requests.update.UpdateRentalRequest;
@@ -19,6 +24,7 @@ import com.kodlamaio.rentalservice.repository.RentalRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -29,6 +35,8 @@ public class RentalManager implements RentalService {
     private final ModelMapperService mapper;
     private final RentalBusinessRules rules;
     private final KafkaProducer producer;
+    private final PaymentClient paymentClient;
+    private final CarClient carClient;
 
     @Override
     public List<GetAllRentalsResponse> getAll() {
@@ -49,8 +57,32 @@ public class RentalManager implements RentalService {
         rules.ensureCarIsAvailable(request.getCarId());
         //rules.checkCarNotUnderRental(request.getCarId());
 
+        final double carDailyPrice;
+        try {
+            carDailyPrice = carClient.getDailyPrice(request.getCarId());
+        } catch (BusinessException businessException) {
+            throw new BusinessException("Renting could not be done: " + businessException.getMessage());
+        }
+
+
+        final double totalPrice = carDailyPrice * request.getRentedForDays();
         final Rental rental = mapper.forRequest().map(request, Rental.class);
         rental.setId(UUID.randomUUID());
+        rental.setTotalPrice(totalPrice);
+
+        var payment = ProcessPaymentRequest.builder()
+                .paymentId(request.getPaymentId())
+                .price(totalPrice)
+                .build();
+        ClientResponse response = paymentClient.processPaymentRequest(payment);
+        if (!response.isSuccess()) {
+            throw new BusinessException("Renting could not be done: " + response.getMessage());
+        }
+
+        rental.setRentedAt(LocalDate.now());
+
+        // payment al
+
         final Rental createdRental = repository.save(rental);
         sendKafkaRentalCreatedEvent(createdRental);
         return mapper.forResponse().map(createdRental, CreateRentalResponse.class);

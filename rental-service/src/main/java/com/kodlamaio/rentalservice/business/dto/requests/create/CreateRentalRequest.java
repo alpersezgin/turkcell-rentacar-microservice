@@ -16,8 +16,8 @@ import java.util.UUID;
 public class CreateRentalRequest {
     @NotNull
     private UUID carId;
-    @Min(1)
-    private double dailyPrice;
+    @NotNull
+    private UUID paymentId;
     @Min(1)
     private int rentedForDays;
 }

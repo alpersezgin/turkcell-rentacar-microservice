@@ -3,13 +3,12 @@ server:
 
 spring:
   application:
-    name: rental-service
+    name: payment-service
 
   datasource:
     username: postgres
     password: 'postgres'
-    url: jdbc:postgresql://localhost:5432/rentaldb-t2
-
+    url: jdbc:postgresql://localhost:5432/paymentdb-t2
 
   jpa:
     properties:
@@ -29,13 +28,12 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
-
 resilience4j:
   retry:
     instances:
       notAvailableService:
         max-attempts: 5
-        wait-duration: 2s
+        wait-duration: 15s
   #        retry-exceptions:
   #          - org.springframework.web.client.HttpServerErrorException
   #          - java.util.concurrent.TimeoutException

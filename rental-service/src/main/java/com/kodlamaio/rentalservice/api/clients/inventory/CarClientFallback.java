@@ -1,4 +1,4 @@
-package com.kodlamaio.rentalservice.api.clients;
+package com.kodlamaio.rentalservice.api.clients.inventory;
 
 import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
 import com.kodlamaio.commonpackage.utils.exceptions.BusinessException;
@@ -12,7 +12,11 @@ import java.util.UUID;
 public class CarClientFallback implements CarClient {
     @Override
     public ClientResponse checkIfCarAvailable(UUID carId) {
-        log.info("CarClientFallback.fallbackMethod run! ");
-        throw new BusinessException("INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
+        throw new BusinessException("checkIfCarAvailable: INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
+    }
+
+    @Override
+    public double getDailyPrice(UUID carId) {
+        throw new BusinessException("getDailyPrice: INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW");
     }
 }

@@ -102,6 +102,13 @@ public class CarManager implements CarService {
         repository.changeStateByCarId(state, id);
     }
 
+    @Override
+    public double getDailyPrice(UUID id) {
+        rules.checkIfCarExists(id);
+        var car = repository.findById(id).orElseThrow();
+        return car.getDailyPrice();
+    }
+
     private void sendKafkaCarCreatedEvent(Car createdCar) {
         var event = mapper.forResponse().map(createdCar, CarCreatedEvent.class);
         producer.sendMessage(event, "car-created");
