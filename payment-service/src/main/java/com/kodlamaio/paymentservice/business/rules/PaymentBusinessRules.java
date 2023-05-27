@@ -20,13 +20,13 @@ public class PaymentBusinessRules {
         }
     }
 
-    public void checkIfBalanceIdEnough(double balance, double price) {
+    public void checkIfBalanceIsEnough(double balance, double price) {
         if (balance < price) {
             throw new BusinessException(Messages.Payment.NotEnoughMoney);
         }
     }
 
-    public void checkIfCardExists(String cardNumber) {
+    public void checkIfCardNumberNotUsed(String cardNumber) {
         if (repository.existsByCardNumber(cardNumber)) {
             throw new BusinessException(Messages.Payment.CardNumberAlreadyExists);
         }

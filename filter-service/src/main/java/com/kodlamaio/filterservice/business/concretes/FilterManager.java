@@ -63,7 +63,7 @@ public class FilterManager implements FilterService {
     }
 
     @Override
-    public Filter getByCarIad(UUID carId) {
+    public Filter getByCarId(UUID carId) {
         return repository.findByCarId(carId);
     }
 }

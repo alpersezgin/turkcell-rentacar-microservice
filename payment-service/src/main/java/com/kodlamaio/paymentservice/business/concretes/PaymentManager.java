@@ -2,8 +2,9 @@ package com.kodlamaio.paymentservice.business.concretes;
 
 import com.kodlamaio.commonpackage.configuration.mappers.ModelMapperService;
 import com.kodlamaio.commonpackage.utils.constants.Messages;
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
-import com.kodlamaio.commonpackage.utils.dto.ProcessPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.requests.ProcessPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetPaymentCardHolderResponse;
 import com.kodlamaio.commonpackage.utils.exceptions.BusinessException;
 import com.kodlamaio.paymentservice.business.abstracts.PaymentService;
 import com.kodlamaio.paymentservice.business.abstracts.PosService;
@@ -47,7 +48,7 @@ public class PaymentManager implements PaymentService {
 
     @Override
     public CreatePaymentResponse add(CreatePaymentRequest request) {
-        rules.checkIfCardExists(request.getCardNumber());
+        rules.checkIfCardNumberNotUsed(request.getCardNumber());
         Payment payment = mapper.forRequest().map(request, Payment.class);
         payment.setId(UUID.randomUUID());
         Payment savedPayment = repository.save(payment);
@@ -75,7 +76,7 @@ public class PaymentManager implements PaymentService {
         Payment payment = repository.findById(request.getPaymentId()).orElseThrow();
         //rules.checkIfPaymentIsValid(payment);
         try {
-            rules.checkIfBalanceIdEnough(payment.getBalance(), request.getPrice());
+            rules.checkIfBalanceIsEnough(payment.getBalance(), request.getPrice());
         } catch (BusinessException businessException) {
             return new ClientResponse(false, businessException.getMessage());
         }
@@ -88,5 +89,12 @@ public class PaymentManager implements PaymentService {
         } catch (BusinessException exception) {
             return new ClientResponse(false, exception.getMessage());
         }
+    }
+
+    @Override
+    public GetPaymentCardHolderResponse getCardHolder(UUID id) {
+        rules.checkIfPaymentExists(id);
+        Payment payment = repository.findById(id).orElseThrow();
+        return mapper.forResponse().map(payment, GetPaymentCardHolderResponse.class);
     }
 }

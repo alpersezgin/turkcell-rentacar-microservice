@@ -1,6 +1,7 @@
 package com.kodlamaio.inventoryservice.api.controllers;
 
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetCarDetailsResponse;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
 import com.kodlamaio.inventoryservice.business.dto.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryservice.business.dto.requests.update.UpdateCarRequest;
@@ -57,5 +58,10 @@ public class CarsController {
     @GetMapping("/daily-price/{id}")
     public double getDailyPrice(@PathVariable UUID id) {
         return service.getDailyPrice(id);
+    }
+
+    @GetMapping("/details/{id}")
+    public GetCarDetailsResponse getDetails(@PathVariable UUID id) {
+        return service.getDetails(id);
     }
 }

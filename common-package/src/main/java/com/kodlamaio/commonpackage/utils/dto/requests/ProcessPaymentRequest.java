@@ -1,8 +1,11 @@
-package com.kodlamaio.commonpackage.utils.dto;
+package com.kodlamaio.commonpackage.utils.dto.requests;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -10,7 +13,6 @@ import java.util.UUID;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class ProcessPaymentRequest {
     @NotNull
     private UUID paymentId;

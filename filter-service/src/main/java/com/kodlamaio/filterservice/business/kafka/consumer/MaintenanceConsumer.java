@@ -20,7 +20,7 @@ public class MaintenanceConsumer {
             groupId = "filter-maintenance-create"
     )
     public void consume(MaintenanceCreatedEvent event) {
-        var filter = service.getByCarIad(event.getCarId());
+        var filter = service.getByCarId(event.getCarId());
         filter.setState("Maintenance");
         service.add(filter);
         log.info("Maintenance created event consumed{}", event);
@@ -31,7 +31,7 @@ public class MaintenanceConsumer {
             groupId = "filter-maintenance-delete"
     )
     public void consume(MaintenanceDeletedEvent event) {
-        var filter = service.getByCarIad(event.getCarId());
+        var filter = service.getByCarId(event.getCarId());
         filter.setState("Available");
         service.add(filter);
         log.info("Maintenance deleted event consumed{}", event);

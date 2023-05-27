@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: invoice-service
+  data:
+
+    elasticsearch:
+      repositories:
+        enabled: true
+
+
+  cloud:
+    config:
+      enabled: true
+  config:
+    import: optional:configserver:http://localhost:8888

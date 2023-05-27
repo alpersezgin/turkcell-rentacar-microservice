@@ -22,6 +22,6 @@ public interface FilterService {
 
     void deleteAllByModelId(UUID modelId);
 
-    Filter getByCarIad(UUID carId);
+    Filter getByCarId(UUID carId);
 
 }

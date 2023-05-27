@@ -1,53 +1,8 @@
-server:
-  port: 0
-
 spring:
   application:
     name: payment-service
-
-  datasource:
-    username: postgres
-    password: 'postgres'
-    url: jdbc:postgresql://localhost:5432/paymentdb-t2
-
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    hibernate:
-      ddl-auto: update
-
   cloud:
-    openfeign:
-      circuitbreaker:
-        enabled: true
-
-  kafka:
-    producer:
-      bootstrap-servers: http://localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-
-resilience4j:
-  retry:
-    instances:
-      notAvailableService:
-        max-attempts: 5
-        wait-duration: 15s
-  #        retry-exceptions:
-  #          - org.springframework.web.client.HttpServerErrorException
-  #          - java.util.concurrent.TimeoutException
-  #          - java.io.IOException
-  #        ignore-exceptions:
-  #          - com.kodlamaio.commonpackage.utils.exceptions.BusinessException
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-  instance:
-    instance-id: ${spring.application.name}:${random.value}
-    prefer-ip-address: true
+    config:
+      enabled: true
+  config:
+    import: optional:configserver:http://localhost:8888

@@ -4,9 +4,12 @@ import com.kodlamaio.commonpackage.configuration.mappers.ModelMapperService;
 import com.kodlamaio.commonpackage.events.inventory.CarCreatedEvent;
 import com.kodlamaio.commonpackage.events.inventory.CarDeletedEvent;
 import com.kodlamaio.commonpackage.kafka.producer.KafkaProducer;
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetCarDetailsResponse;
 import com.kodlamaio.commonpackage.utils.exceptions.BusinessException;
+import com.kodlamaio.inventoryservice.business.abstracts.BrandService;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
+import com.kodlamaio.inventoryservice.business.abstracts.ModelService;
 import com.kodlamaio.inventoryservice.business.dto.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryservice.business.dto.requests.update.UpdateCarRequest;
 import com.kodlamaio.inventoryservice.business.dto.responses.create.CreateCarResponse;
@@ -30,6 +33,8 @@ public class CarManager implements CarService {
     private final ModelMapperService mapper;
     private final CarBusinessRules rules;
     private final KafkaProducer producer;
+    private final BrandService brandService;
+    private final ModelService modelService;
 
     @Override
     public List<GetAllCarsResponse> getAll() {
@@ -107,6 +112,14 @@ public class CarManager implements CarService {
         rules.checkIfCarExists(id);
         var car = repository.findById(id).orElseThrow();
         return car.getDailyPrice();
+    }
+
+    @Override
+    public GetCarDetailsResponse getDetails(UUID id) {
+        rules.checkIfCarExists(id);
+        Car car = repository.findById(id).orElseThrow();
+        var response = mapper.forResponse().map(car, GetCarDetailsResponse.class);
+        return response;
     }
 
     private void sendKafkaCarCreatedEvent(Car createdCar) {

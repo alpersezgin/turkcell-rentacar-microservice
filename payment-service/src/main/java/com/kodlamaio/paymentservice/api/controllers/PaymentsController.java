@@ -1,7 +1,8 @@
 package com.kodlamaio.paymentservice.api.controllers;
 
-import com.kodlamaio.commonpackage.utils.dto.ClientResponse;
-import com.kodlamaio.commonpackage.utils.dto.ProcessPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.requests.ProcessPaymentRequest;
+import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
+import com.kodlamaio.commonpackage.utils.dto.responses.GetPaymentCardHolderResponse;
 import com.kodlamaio.paymentservice.business.abstracts.PaymentService;
 import com.kodlamaio.paymentservice.business.dto.requests.create.CreatePaymentRequest;
 import com.kodlamaio.paymentservice.business.dto.requests.update.UpdatePaymentRequest;
@@ -50,5 +51,10 @@ public class PaymentsController {
     @PostMapping("/process-payment")
     public ClientResponse processPayment(@Valid @RequestBody ProcessPaymentRequest request) {
         return service.processPayment(request);
+    }
+
+    @GetMapping("/card-holder/{id}")
+    public GetPaymentCardHolderResponse getCardHolder(@PathVariable UUID id) {
+        return service.getCardHolder(id);
     }
 }
