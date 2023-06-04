@@ -1,20 +1,26 @@
+# to manually assign a static port
+server:
+  port: 9010
+
 spring:
   application:
-    name: api-gateway
+    name: api-gateway # for unique service name
+
+  # api gateway
   cloud:
     gateway:
       discovery:
         locator:
           enabled: true
           lower-case-service-id: true
+
+# Discovery client configuration for registering the service to the discovery server
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://localhost:8761/eureka # The purpose of using the random number is to generate the unique name in case of multiple running of the service.
   instance:
     instance-id: ${spring.application.name}:${random.value}
     prefer-ip-address: true
-server:
-  port: 9010
