@@ -6,6 +6,13 @@ spring:
   application:
     name: invoice-service # for unique service name
 
+  # Keycloak jwt resource uri
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/RentACarMicroservice/protocol/openid-connect/certs
+
   # ElasticSearch DB configuration
   data:
     elasticsearch:

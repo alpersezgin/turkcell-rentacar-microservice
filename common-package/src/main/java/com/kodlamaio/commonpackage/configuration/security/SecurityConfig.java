@@ -20,18 +20,21 @@ public class SecurityConfig {
 
                 // #1
                 .requestMatchers(
-                        // herkes erişsin
-                        "/api/filters",
+                        // swagger-ui
+                        "/swagger-ui/**",
+                        "/{version}/api-docs/**",
+
+                        "/api/filters/**",
 
                         // clients
                         /// car-client
-                        "/api/cars/check-car-available/**",
-                        "/api/cars/daily-price/**",
-                        "/api/cars/details/**",
+                        "/api/cars/check-car-available/{carId}",
+                        "/api/cars/daily-price/{carId}",
+                        "/api/cars/details/{carId}",
 
                         /// payment-client
                         "/api/payments/process-payment",
-                        "/api/payments/card-holder/**"
+                        "/api/payments/card-holder/{paymentId}"
                 )
                 .permitAll()
 
