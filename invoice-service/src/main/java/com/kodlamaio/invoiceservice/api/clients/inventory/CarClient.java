@@ -12,5 +12,5 @@ import java.util.UUID;
 public interface CarClient {
     @GetMapping(value = "/api/cars/details/{id}")
     @Retry(name = "notAvailableService")
-    GetCarDetailsResponse getDetails(@PathVariable UUID id);
+    GetCarDetailsResponse getCarDetails(@PathVariable UUID id);
 }

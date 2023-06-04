@@ -1,12 +1,6 @@
 spring:
   application:
     name: invoice-service
-  data:
-
-    elasticsearch:
-      repositories:
-        enabled: true
-
 
   cloud:
     config:

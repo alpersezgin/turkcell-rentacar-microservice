@@ -30,14 +30,13 @@ public class InvoiceManager implements InvoiceService {
 
     @Override
     public List<GetAllInvoicesResponse> getAll() {
-        var res = repository.findAll();
-        var iter = res.spliterator();
+        var iter = repository.findAll();
+        var split_iter = iter.spliterator();
 
-        var arr = StreamSupport.stream(iter, false)
+        var list = StreamSupport.stream(split_iter, false)
                 .map(invoice -> mapper.forResponse().map(invoice, GetAllInvoicesResponse.class))
                 .toList();
-
-        return arr;
+        return list;
     }
 
     @Override
@@ -61,7 +60,11 @@ public class InvoiceManager implements InvoiceService {
     @Override
     public void addByRentalPaymentCompletedEvent(RentalPaymentCompletedEvent event) {
         GetCarDetailsResponse response = getCarDetailsFromClient(event.getCarId());
-        Invoice invoice = new Invoice(
+        Invoice invoice = mapper.forResponse().map(event, Invoice.class);
+        mapper.forResponse().map(response, invoice);
+        invoice.setRentedAt(Date.from(event.getRentedAt().atZone(ZoneId.systemDefault()).toInstant()));
+
+        /*Invoice invoice = new Invoice(
                 null,
                 event.getCardHolder(),
                 response.getModelName(),
@@ -72,13 +75,13 @@ public class InvoiceManager implements InvoiceService {
                 event.getTotalPrice(),
                 event.getRentedForDays(),
                 Date.from(event.getRentedAt().atZone(ZoneId.systemDefault()).toInstant())
-        );
+        );*/
         repository.save(invoice);
     }
 
     private GetCarDetailsResponse getCarDetailsFromClient(UUID carId) {
         try {
-            return carClient.getDetails(carId);
+            return carClient.getCarDetails(carId);
         } catch (BusinessException businessException) {
             throw new BusinessException("Error on InvoiceManager.add: " + businessException.getMessage());
         }

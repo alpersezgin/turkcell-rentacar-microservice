@@ -1,6 +1,11 @@
 spring:
   application:
     name: invoice-service
+
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
   kafka:
     consumer:
       auto-offset-reset: earliest

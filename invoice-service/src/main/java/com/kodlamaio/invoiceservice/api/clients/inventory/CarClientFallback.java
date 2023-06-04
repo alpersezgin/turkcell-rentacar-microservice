@@ -15,7 +15,7 @@ public class CarClientFallback implements FallbackFactory<CarClient> {
     public CarClient create(Throwable cause) {
         return new CarClient() {
             @Override
-            public GetCarDetailsResponse getDetails(UUID id) {
+            public GetCarDetailsResponse getCarDetails(UUID id) {
                 throw new BusinessException("GetCarDetailsResponse: INVENTORY_SERVICE_NOT_AVAILABLE_RIGHT_NOW. Cause: " + cause.getMessage());
             }
         };
