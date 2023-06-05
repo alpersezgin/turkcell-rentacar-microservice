@@ -2,6 +2,7 @@ package com.kodlamaio.inventoryservice.api.controllers;
 
 import com.kodlamaio.commonpackage.utils.dto.responses.ClientResponse;
 import com.kodlamaio.commonpackage.utils.dto.responses.GetCarDetailsResponse;
+import com.kodlamaio.commonpackage.utils.security.KeycloakJwtRoleConverter;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
 import com.kodlamaio.inventoryservice.business.dto.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryservice.business.dto.requests.update.UpdateCarRequest;
@@ -12,9 +13,13 @@ import com.kodlamaio.inventoryservice.business.dto.responses.update.UpdateCarRes
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,20 +31,33 @@ public class CarsController {
 
     @GetMapping
     // Secured, PreAuthorize, PostAuthroize, PostFilter, PreFilter
-    @Secured("ROLE_admin")
-    public List<GetAllCarsResponse> getAll() {
-        return service.getAll();
-    }
+    /// @Secured("ROLE_admin")
+    /// @PreAuthorize("hasRole('user') or hasRole('admin')")
+    @PreAuthorize("hasAnyRole('user', 'admin')")
+    public List<GetAllCarsResponse> getAll(@AuthenticationPrincipal Jwt jwt) {
+        var cars = service.getAll();
 
-    @GetMapping("/{id}")
-    public GetCarResponse getById(@PathVariable UUID id) {
-        return service.getById(id);
+        var roles = KeycloakJwtRoleConverter.getRolesFromJwt(jwt);
+        if (roles.contains("admin")) return cars;
+
+        int currentYear = LocalDate.now().getYear();
+        return cars.stream().filter(car -> car.getModelYear() >= currentYear - 1).toList();
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateCarResponse add(@Valid @RequestBody CreateCarRequest request) {
         return service.add(request);
+    }
+
+    @GetMapping("/{id}")
+    @PostAuthorize(
+            "hasRole('admin') || " +
+                    "returnObject.modelYear>=T(java.time.LocalDateTime).now().minusYear(1).getYear()"
+    )
+    public GetCarResponse getById(@PathVariable UUID id, @AuthenticationPrincipal Jwt jwt) {
+        System.out.println("Jwt: " + jwt);
+        return service.getById(id);
     }
 
     @PutMapping("/{id}")
