@@ -1,0 +1,1015 @@
+{
+	"info": {
+		"_postman_id": "ceaa4f3e-b6c2-4345-a184-7cc4ad0986e1",
+		"name": "Rent A Car",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26877699"
+	},
+	"item": [
+		{
+			"name": "[m-5]. inventory-service",
+			"item": [
+				{
+					"name": "brands",
+					"item": [
+						{
+							"name": "Get all brands",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/brands",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a brand",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/brands/cf73a210-bb96-4b91-95d4-814a9bb4e545",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"brands",
+										"cf73a210-bb96-4b91-95d4-814a9bb4e545"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a brand",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"AUDI\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/brands",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"brands"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a brand",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"name\": \"Mercedes\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/brands/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"brands",
+										"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a brand",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/brands/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"brands",
+										"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "model",
+					"item": [
+						{
+							"name": "Get all models",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/models",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"models"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a model",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/models/3c36c910-4170-427d-9a3b-75ab5edb0539",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"models",
+										"3c36c910-4170-427d-9a3b-75ab5edb0539"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a model",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"brandId\": \"d8206841-05e2-48c6-95d6-19699505836e\",\r\n  \"name\": \"S8\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/models",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"models"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a model",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"brandId\": \"da9cd4cd-5bc2-4f1a-bf4a-dc35f5d23051\",\r\n  \"name\": \"A7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/models/3c36c910-4170-427d-9a3b-75ab5edb0539",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"models",
+										"3c36c910-4170-427d-9a3b-75ab5edb0539"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a model",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{INVENTORY_SERVICE_URL}}/api/models/360ee1ae-baa4-462e-91cd-ee1aa83e3fe2",
+									"host": [
+										"{{INVENTORY_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"models",
+										"360ee1ae-baa4-462e-91cd-ee1aa83e3fe2"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "cars",
+					"item": [
+						{
+							"name": "CRUD",
+							"item": [
+								{
+									"name": "Get all cars",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get a car",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/3044005b-1688-4fd2-b8f9-2571ed7dd3ca",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"3044005b-1688-4fd2-b8f9-2571ed7dd3ca"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Create a car",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"modelId\": \"8da4bdd7-c05d-41cc-b54a-fd18d2cbd370\",\r\n  \"modelYear\": 2023,\r\n  \"plate\": \"23 HP 023\",\r\n  \"dailyPrice\": 50000\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Update a car",
+									"request": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"modelId\": \"b418fea9-82a9-4c50-932a-0bb4cc9ea957\",\r\n  \"modelYear\": 2022,\r\n  \"plate\": \"80 W 527\",\r\n  \"state\": \"Available\",\r\n  \"dailyPrice\": 2\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Delete a car",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/1d3d3367-6948-46fb-9791-786d1fa2a969",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"1d3d3367-6948-46fb-9791-786d1fa2a969"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "For another services with feign clients",
+							"item": [
+								{
+									"name": "Check car available",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/check-car-available/9157b5e2-c85d-4479-a4b2-6e86287e045a",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"check-car-available",
+												"9157b5e2-c85d-4479-a4b2-6e86287e045a"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get daily price of a car",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/daily-price/9157b5e2-c85d-4479-a4b2-6e86287e045a",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"daily-price",
+												"9157b5e2-c85d-4479-a4b2-6e86287e045a"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "Get a car's details",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{INVENTORY_SERVICE_URL}}/api/cars/details/9157b5e2-c85d-4479-a4b2-6e86287e045a",
+											"host": [
+												"{{INVENTORY_SERVICE_URL}}"
+											],
+											"path": [
+												"api",
+												"cars",
+												"details",
+												"9157b5e2-c85d-4479-a4b2-6e86287e045a"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "[m-6]. filter-service",
+			"item": [
+				{
+					"name": "Get all filters",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FILTER_SERVICE_URL}}/api/filters",
+							"host": [
+								"{{FILTER_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"filters"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a filter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{FILTER_SERVICE_URL}}/api/filters/6468bc3e4e035c5ee4932591",
+							"host": [
+								"{{FILTER_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"filters",
+								"6468bc3e4e035c5ee4932591"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[m-7]. maintenance-service",
+			"item": [
+				{
+					"name": "Get all maintenances",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{MAINTENANCE_SERVICE_URL}}/api/maintenances",
+							"host": [
+								"{{MAINTENANCE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"maintenances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a maintenance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{MAINTENANCE_SERVICE_URL}}/api/maintenances/cf73a210-bb96-4b91-95d4-814a9bb4e545",
+							"host": [
+								"{{MAINTENANCE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"maintenances",
+								"cf73a210-bb96-4b91-95d4-814a9bb4e545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a maintenance",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Volvo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MAINTENANCE_SERVICE_URL}}/api/maintenances",
+							"host": [
+								"{{MAINTENANCE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"maintenances"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a maintenance",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Mercedes\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{MAINTENANCE_SERVICE_URL}}/api/maintenances/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+							"host": [
+								"{{MAINTENANCE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"maintenances",
+								"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a maintenance",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{MAINTENANCE_SERVICE_URL}}/api/maintenances/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+							"host": [
+								"{{MAINTENANCE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"maintenances",
+								"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[m-8]. rental-service",
+			"item": [
+				{
+					"name": "Get all rentals",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{RENTAL_SERVICE_URL}}/api/rentals",
+							"host": [
+								"{{RENTAL_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a rental",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{RENTAL_SERVICE_URL}}/api/rentals/cf73a210-bb96-4b91-95d4-814a9bb4e545",
+							"host": [
+								"{{RENTAL_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"rentals",
+								"cf73a210-bb96-4b91-95d4-814a9bb4e545"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a rental",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\": \"\",\r\n    \"paymentId\": \"\",\r\n    \"rentedForDays\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RENTAL_SERVICE_URL}}/api/rentals",
+							"host": [
+								"{{RENTAL_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"rentals"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a rental",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"carId\": \"\",\r\n    \"paymentId\": \"\",\r\n    \"rentedForDays\": 1,\r\n    \"rentedAt\": \"2023-06-04\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{RENTAL_SERVICE_URL}}/api/rentals/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+							"host": [
+								"{{RENTAL_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"rentals",
+								"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a rental",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{RENTAL_SERVICE_URL}}/api/rentals/2f3e23ac-ef78-4d13-adba-d056a92b03bf",
+							"host": [
+								"{{RENTAL_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"rentals",
+								"2f3e23ac-ef78-4d13-adba-d056a92b03bf"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "[m-9]. payment-service",
+			"item": [
+				{
+					"name": "CRUD",
+					"item": [
+						{
+							"name": "Get all payments",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get a payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments/9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments",
+										"9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create a payment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"balance\": 3000,\r\n    \"cardNumber\": \"1234567812345678\",\r\n    \"cardHolder\": \"Joe Doe\",\r\n    \"cardExpirationYear\": 2030,\r\n    \"cardExpirationMonth\": 6,\r\n    \"cardCvv\": 123\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update a payment",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cardNumber\": \"1234567812345678\",\r\n    \"cardHolder\": \"Joe Doe\",\r\n    \"cardExpirationYear\": 2030,\r\n    \"cardExpirationMonth\": 6,\r\n    \"cardCvv\": 123,\r\n    \"balance\": 3000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments/9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments",
+										"9ca7d5fd-a6e4-4181-b0cf-a49db6ffc8d2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete a payment",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments/1d3d3367-6948-46fb-9791-786d1fa2a969",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments",
+										"1d3d3367-6948-46fb-9791-786d1fa2a969"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "For another services with feign clients",
+					"item": [
+						{
+							"name": "Process payment",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"paymentId\": \"\",\r\n    \"price\": 2500\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments/process-payment",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments",
+										"process-payment"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get car holder from a payment",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{PAYMENT_SERVICE_URL}}/api/payments/card-holder/1d3d3367-6948-46fb-9791-786d1fa2a969",
+									"host": [
+										"{{PAYMENT_SERVICE_URL}}"
+									],
+									"path": [
+										"api",
+										"payments",
+										"card-holder",
+										"1d3d3367-6948-46fb-9791-786d1fa2a969"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "[m-10]. invoice-service",
+			"item": [
+				{
+					"name": "Get all invoices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{INVOICE_SERVICE_URL}}/api/invoices",
+							"host": [
+								"{{INVOICE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"invoices"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get an invoice",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{INVOICE_SERVICE_URL}}/api/invoices/U5q7XYgBRm7WQwuj-3hi",
+							"host": [
+								"{{INVOICE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"U5q7XYgBRm7WQwuj-3hi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete an invoice",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{INVOICE_SERVICE_URL}}/api/invoices/U5q7XYgBRm7WQwuj-3hi",
+							"host": [
+								"{{INVOICE_SERVICE_URL}}"
+							],
+							"path": [
+								"api",
+								"invoices",
+								"U5q7XYgBRm7WQwuj-3hi"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJKbFNfTU0yOXBBdHFLR2FUM19sSmVoZFNBV2FMdWFhMlRpSjNwYWhDTUQ0In0.eyJleHAiOjE2ODU5MTUxMTMsImlhdCI6MTY4NTkxMzMxMywianRpIjoiNGMxNWZkYTAtM2E0ZC00NWJkLThkNjItZmRkMmI2ZTU3MTI4IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo4MDgwL3JlYWxtcy9SZW50QUNhck1pY3Jvc2VydmljZSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJlZTQ2NjI3Yy1lNGEwLTRhZmYtYTRjZC1jZTMxOGU0MzJmMzciLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJyZW50LWEtY2FyLW1pY3Jvc2VydmljZSIsInNlc3Npb25fc3RhdGUiOiI3ZGVmMDk5Ny1kODRiLTQ4ZTktYWZhOC05ZGNkZjY4YjRiYmUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLXJlbnRhY2FybWljcm9zZXJ2aWNlIiwib2ZmbGluZV9hY2Nlc3MiLCJ1bWFfYXV0aG9yaXphdGlvbiIsInVzZXIiXX0sInJlc291cmNlX2FjY2VzcyI6eyJhY2NvdW50Ijp7InJvbGVzIjpbIm1hbmFnZS1hY2NvdW50IiwibWFuYWdlLWFjY291bnQtbGlua3MiLCJ2aWV3LXByb2ZpbGUiXX19LCJzY29wZSI6ImVtYWlsIHByb2ZpbGUiLCJzaWQiOiI3ZGVmMDk5Ny1kODRiLTQ4ZTktYWZhOC05ZGNkZjY4YjRiYmUiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwibmFtZSI6IkFobWV0IEVtc2FsIiwicHJlZmVycmVkX3VzZXJuYW1lIjoiYWhtZXQiLCJnaXZlbl9uYW1lIjoiQWhtZXQiLCJmYW1pbHlfbmFtZSI6IkVtc2FsIiwiZW1haWwiOiJhaG1ldEBnbWFpbC5jb20ifQ.ioc5U_f5Gu2kKCum6tgvUej7H0C_6PXjhkPgv1ZwSDqOKPA7Zkultz434lH1ECrv6UZJ7kWZIczfVid0TkdAdUB7dttj73-FUGlWiLPejYytXkKsEIkRaW7ZGr2f_l-s57XLpfb1qpNkoiR6MSP73Ik9F-XsSmS1xExziMbI7gL8vTEMbbGG8Eln-2FWZ6B-sBr81hg4LfglW7unKa4P7OcqLk_kH4mFKZMAoM_xZnJHk5_2Sa6lIxVzsWZyzFshZlNGW5tB_uc9Y2-GhmSQI_epU78TukgOLZduJPeT4EpCBXG1EbG9B2zLQ56NZAb7vid6GX6ykZ3ev4bqhbIpow",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_GATEWAY",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "INVENTORY_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "FILTER_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "MAINTENANCE_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "RENTAL_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "PAYMENT_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "INVOICE_SERVICE_URL",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

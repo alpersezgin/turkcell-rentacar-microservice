@@ -1,15 +1,19 @@
 version: '3.8'
+
 services:
+
+  # IMAGE: KAFKA
   kafka:
     container_name: kafka-t2
     image: bashj79/kafka-kraft
     ports:
       - "9092:9092"
     volumes:
-      - kafka_data:/opt//kafkakafka-logs
+      - kafka_data:/opt/kafka/kafka-logs
     #environment:
     #  KAFKA_ADVERTISED_LISTENER: PLAINTEXT://192.168.1.102:9092
 
+  # IMAGE: KEYCLOAK
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: keycloak-t2
@@ -22,14 +26,16 @@ services:
     volumes:
       - .:/opt/jboss/keycloak/imports
 
+  # IMAGE: MONGODB
   mongodb:
     container_name: turkcell2-filterdb
     image: mongo
     ports:
       - "27017:27017"
     volumes:
-      - mongodb_data:/data/db/
+      - mongodb_data:/data/db
 
+  # IMAGE: MYSQL
   maintenancedb:
     container_name: maintenancedb-t2
     image: mysql
@@ -42,6 +48,7 @@ services:
     volumes:
       - maintenancedb_data:/data/db
 
+  # IMAGE: MYSQL
   paymentdb:
     container_name: paymentdb-t2
     image: mysql
@@ -54,7 +61,7 @@ services:
     volumes:
       - paymentdb_data:/data/db
 
-
+  # IMAGE: ELASTICSEARCH
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.6.2
     container_name: elasticsearch
@@ -67,13 +74,52 @@ services:
       - "9300:9300"
     networks:
       - elastic
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
 
-networks:
-  elastic:
-    driver: bridge
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus-t2
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - monitor-net
+
+  grafana:
+    image: grafana/grafana
+    container_name: grafana-t2
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_USER=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - grafana_config:/etc/grafana
+    networks:
+      - monitor-net
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin-t2
+    ports:
+      - "9411:9411"
+
 
 volumes:
+  esdata:
   kafka_data:
   mongodb_data:
   maintenancedb_data:
   paymentdb_data:
+  grafana_data:
+  grafana_config:
+
+networks:
+  elastic:
+    driver: bridge
+  monitor-net:
+    driver: bridge
